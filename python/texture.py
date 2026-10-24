@@ -6,12 +6,13 @@ import graphics_math as gm
 import wgpu
 
 class Texture:
-  """2D texture bound to `varname`, stored as rgba8unorm-srgb. Content comes
+  """2D texture bound to `varname`, stored as rgba8unorm-srgb (or rgba8unorm
+  with srgb=False, for data such as normal maps). Content comes
   from one source: `filename` loads an image, `texel` fills a 1x1 solid
   color, otherwise a blank `width` x `height` texture is created. A pure
   resource-holder - no load/unload of its own, see TextureSet."""
 
-  def __init__ (self, device: wgpu.GPUDevice, varname: str, filename: str | None, texel: gm.FloatArray | None = None, width: int = 1, height: int = 1, mipmaps: bool = False) -> None:
+  def __init__ (self, device: wgpu.GPUDevice, varname: str, filename: str | None, texel: gm.FloatArray | None = None, width: int = 1, height: int = 1, mipmaps: bool = False, srgb: bool = True) -> None:
     """Builds and uploads the GPU texture and its view from the given
     source (image file, solid `texel` color, or blank buffer). With
     `mipmaps`, an image file also gets its full mip chain, downsampled on
@@ -46,9 +47,10 @@ class Texture:
 
     # "-srgb": the bytes of an image (jpg/png) already come sRGB-encoded by
     # convention - the GPU undoes that curve when sampling, delivering the
-    # shader a true linear value.
+    # shader a true linear value. Textures holding data (normal maps) must
+    # not go through that curve: pass srgb=False.
     self.tex: wgpu.GPUTexture = device.create_texture(
-      size=(width, height, 1), format="rgba8unorm-srgb", mip_level_count=levels,
+      size=(width, height, 1), format="rgba8unorm-srgb" if srgb else "rgba8unorm", mip_level_count=levels,
       usage=wgpu.TextureUsage.TEXTURE_BINDING | wgpu.TextureUsage.COPY_DST,
     )
     for level in range(levels):

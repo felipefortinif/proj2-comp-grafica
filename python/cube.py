@@ -113,36 +113,36 @@ class Cube (Shape):
       0.0, 0.0,
     ], dtype = 'float32')
     tangents = np.array([
-      # back face: counter clockwise
-      -1.0, 0.0, 0.0,
-      -1.0, 0.0, 0.0,
-      -1.0, 0.0, 0.0,
-      -1.0, 0.0, 0.0,
-      # front face: counter clockwise
-      1.0, 0.0, 0.0,
-      1.0, 0.0, 0.0,
-      1.0, 0.0, 0.0,
-      1.0, 0.0, 0.0,
-      # left face: counter clockwise
+      # back face: tangente = direcao em que s cresce
       0.0, 1.0, 0.0,
       0.0, 1.0, 0.0,
       0.0, 1.0, 0.0,
       0.0, 1.0, 0.0,
-      # right face: counter clockwise
-      0.0,-1.0, 0.0,
-      0.0,-1.0, 0.0,
-      0.0,-1.0, 0.0,
-      0.0,-1.0, 0.0,
-      # botton face: counter clockwise
-      -1.0, 0.0, 0.0,
-      -1.0, 0.0, 0.0,
-      -1.0, 0.0, 0.0,
-      -1.0, 0.0, 0.0,
-      # top face: counter clockwise
+      # front face: tangente = direcao em que s cresce
       1.0, 0.0, 0.0,
       1.0, 0.0, 0.0,
       1.0, 0.0, 0.0,
       1.0, 0.0, 0.0,
+      # left face: tangente = direcao em que s cresce
+      0.0, 0.0, 1.0,
+      0.0, 0.0, 1.0,
+      0.0, 0.0, 1.0,
+      0.0, 0.0, 1.0,
+      # right face: tangente = direcao em que s cresce
+      0.0, 1.0, 0.0,
+      0.0, 1.0, 0.0,
+      0.0, 1.0, 0.0,
+      0.0, 1.0, 0.0,
+      # botton face: tangente = direcao em que s cresce
+      1.0, 0.0, 0.0,
+      1.0, 0.0, 0.0,
+      1.0, 0.0, 0.0,
+      1.0, 0.0, 0.0,
+      # top face: tangente = direcao em que s cresce
+      0.0, 0.0, 1.0,
+      0.0, 0.0, 1.0,
+      0.0, 0.0, 1.0,
+      0.0, 0.0, 1.0,
     ], dtype = 'float32')
     index = np.array([
       0,1,2,0,2,3,
