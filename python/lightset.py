@@ -9,15 +9,9 @@ if TYPE_CHECKING:
   from uniformbuffer import UniformBlock
 
 class LightSet(Light):
-  """Agrupa varias luzes num unico bloco "global" (o Shader aceita uma so
-  luz). Cada luz escreve seus valores com um prefixo proprio: o prefixo
-  troca o "light_" inicial do nome (light_position -> light2_position), de
-  modo que o shader declara um conjunto de campos por luz. Valores que nao
-  comecam com "light_" (ex.: slide_matrix) passam com o nome original."""
-
   def __init__ (self, lights: dict[str, Light]) -> None:
     Light.__init__(self, "world")
-    self.lights = lights   # prefixo -> luz, ex.: {"light_": spot, "light2_": lamp}
+    self.lights = lights
 
   def map (self, matrix):
     return {}
