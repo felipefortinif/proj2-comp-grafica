@@ -221,7 +221,7 @@ def on_wheel (event: Any) -> None:
 def main () -> None:
   global canvas, device, context, renderer, camera, scene, spot
 
-  canvas = RenderCanvas(size=(800, 600), title="comp grafica - mesa com spot", update_mode="continuous", max_fps=60)
+  canvas = RenderCanvas(size=(800, 600), title="proj2", update_mode="continuous", max_fps=60)
   adapter = wgpu.gpu.request_adapter_sync()
   device = adapter.request_device_sync()
   context = canvas.get_context("wgpu")
